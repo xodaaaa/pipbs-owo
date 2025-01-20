@@ -41,3 +41,17 @@ Based on the excellent script of [wofferl](https://github.com/wofferl/proxmox-ba
     sudo apt install -y raspberrypi-kernel-headers pv zfs-initramfs zfsutils-linux
     sudo apt install -y proxmox-backup-server
     ```
+## Repo tree
+
+*Only shows up on GitHub Pages.*
+
+<!--GAMFC-->
+<!--GAMFC-END-->
+
+<a href="https://star-history.com/#dexogen/pipbs&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=dexogen/pipbs&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=dexogen/pipbs&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=dexogen/pipbs&type=Date" />
+ </picture>
+</a>
