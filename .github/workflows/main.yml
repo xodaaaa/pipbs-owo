@@ -52,7 +52,8 @@ jobs:
         uses: jaywcjlove/github-action-modify-file-content@main
         with:
           path: README.md
-          body: ${{ steps.tree.outputs.content }}      
+          body: ${{ steps.tree.outputs.content }}
+          sync_local_file: false
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
