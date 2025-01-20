@@ -46,9 +46,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y tree
-          echo "\n## Repository Structure\n" >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
+          echo "\n## Repository Structure\n" >> README.md
           echo '```' >> README.md
-          tree --charset=ascii ${{ steps.create-apt-repo.outputs.dir }} >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
+          tree --charset=ascii ${{ steps.create-apt-repo.outputs.dir }} >> README.md
           echo '```' >> README.md
       - name: Convert README.md to index.html
         run: |
