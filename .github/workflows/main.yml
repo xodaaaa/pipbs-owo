@@ -42,19 +42,18 @@ jobs:
           architectures: ${{ env.ARCHITECTURES }}
           limit: '1'
           scan-dir: '.'
-      # - name: Rename public key to gpg.key
-      #   run: mv "${{ steps.create-apt-repo.outputs.dir }}/${{ steps.create-apt-repo.outputs.key }}" \
-      #          "${{ steps.create-apt-repo.outputs.dir }}/gpg.key"
-      - name: Move and rename README to index
-        run: mv README.md ${{ steps.create-apt-repo.outputs.dir }}/index.md
       - name: Append directory tree to index.md
         run: |
           sudo apt-get update
           sudo apt-get install -y tree
-          echo "\n## Repository structure\n" >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
-          echo '```' >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
-          tree -A ${{ steps.create-apt-repo.outputs.dir }} >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
-          echo '```' >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
+          echo "\n## Repository Structure\n" >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
+          echo '```' >> README.md
+          tree --charset=ascii ${{ steps.create-apt-repo.outputs.dir }} >> ${{ steps.create-apt-repo.outputs.dir }}/index.md
+          echo '```' >> README.md
+      - name: Convert README.md to index.html
+        run: |
+          sudo apt-get install -y pandoc
+          pandoc README.md -o ${{ steps.create-apt-repo.outputs.dir }}/index.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
