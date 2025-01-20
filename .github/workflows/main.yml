@@ -42,6 +42,9 @@ jobs:
           architectures: ${{ env.ARCHITECTURES }}
           limit: '1'
           scan-dir: '.'
+      - name: Rename public key to gpg.key
+        run: mv "${{ steps.create-apt-repo.outputs.dir }}/${{ steps.create-apt-repo.outputs.key }}" \
+               "${{ steps.create-apt-repo.outputs.dir }}/gpg.key"
       - name: Move and rename README to index
         run: mv README.md ${{ steps.create-apt-repo.outputs.dir }}/index.md
       - name: Append directory tree to index.md
