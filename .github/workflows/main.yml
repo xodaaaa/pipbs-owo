@@ -42,18 +42,24 @@ jobs:
           architectures: ${{ env.ARCHITECTURES }}
           limit: '1'
           scan-dir: '.'
-      - name: Append directory tree to index.md
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y tree
-          echo "\n## Repository Structure\n" >> README.md
-          echo '```' >> README.md
-          tree --charset=ascii ${{ steps.create-apt-repo.outputs.dir }} >> README.md
-          echo '```' >> README.md
-      - name: Convert README.md to index.html
-        run: |
-          sudo apt-get install -y pandoc
-          pandoc README.md -o ${{ steps.create-apt-repo.outputs.dir }}/index.html
+      - name: Print Folder Tree
+        uses: jaywcjlove/github-action-folder-tree@main
+        id: tree
+        with:
+          path: ${{ steps.create-apt-repo.outputs.dir }}
+          depth: 10
+      - name: Modify README.md
+        uses: jaywcjlove/github-action-modify-file-content@main
+        with:
+          path: README.md
+          body: ${{ steps.tree.outputs.content }}      
+      - name: Converts Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          source: README.md
+          output: ${{ steps.create-apt-repo.outputs.dir }}/index.html
+          github-corners: https://github.com/jaywcjlove/markdown-to-html-cli
+          favicon: data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>          
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
