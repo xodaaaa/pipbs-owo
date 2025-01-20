@@ -48,16 +48,18 @@ jobs:
         with:
           path: ${{ steps.create-apt-repo.outputs.dir }}
           depth: 10
+      - name: Copy README
+        run: cp README.md ${{ steps.create-apt-repo.outputs.dir }}/README.md
       - name: Modify README.md
         uses: jaywcjlove/github-action-modify-file-content@main
         with:
-          path: README.md
+          path: ${{ steps.create-apt-repo.outputs.dir }}/README.md
           body: ${{ steps.tree.outputs.content }}
           sync_local_file: false
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
-          source: README.md
+          source: ${{ steps.create-apt-repo.outputs.dir }}/README.md
           output: ${{ steps.create-apt-repo.outputs.dir }}/index.html
           github-corners: https://github.com/jaywcjlove/markdown-to-html-cli
           favicon: data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>          
