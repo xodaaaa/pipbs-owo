@@ -32,7 +32,7 @@ jobs:
           repository: 'wofferl/proxmox-backup-arm64'
           latest: true
           fileName: '*.deb'
-      - uses: morph027/apt-repo-action
+      - uses: morph027/apt-repo-action@v2
         id: create-apt-repo
         with:
           repo-name: ${{ env.REPO_NAME }}
