@@ -42,18 +42,6 @@ jobs:
           architectures: ${{ env.ARCHITECTURES }}
           limit: '1'
           scan-dir: '.'
-      # - name: Print Folder Tree
-      #   uses: jaywcjlove/github-action-folder-tree@main
-      #   id: tree
-      #   with:
-      #     path: ${{ steps.create-apt-repo.outputs.dir }}
-      #     depth: 10
-      # - name: Modify README.md
-      #   uses: jaywcjlove/github-action-modify-file-content@main
-      #   with:
-      #     path: ${{ steps.create-apt-repo.outputs.dir }}/README.md
-      #     body: ${{ steps.tree.outputs.content }}
-      #     sync_local_file: false
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
