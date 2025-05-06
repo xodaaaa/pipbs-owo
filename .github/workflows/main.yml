@@ -32,12 +32,7 @@ jobs:
           repository: 'wofferl/proxmox-backup-arm64'
           latest: true
           fileName: '*.deb'
-      - name: Show current apt sources
-        run: |
-          ls -la /etc/apt/sources.list.d/
-          cat /etc/apt/sources.list
-          cat /etc/apt/apt-mirrors.txt
-      - uses: morph027/apt-repo-action@v3
+      - uses: dexogen/apt-repo-action@v3
         id: create-apt-repo
         with:
           repo-name: ${{ env.REPO_NAME }}
