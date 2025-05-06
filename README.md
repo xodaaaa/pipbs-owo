@@ -1,4 +1,7 @@
-![Proxmox](https://www.casalicomputers.com/sites/default/files/proxmox-logo.png)
+<p align="center">
+  <img width="800" height="220" src="https://newsletter.proxmox.com/uploads/Proxmox-logo-opensource-white-background-800.png">
+</p>
+
 # PiPBS - Proxmox Backup Server for the Raspberry Pi
 ![arm64](https://img.shields.io/badge/architecture-arm64-9cf)
 [![wofferl](https://img.shields.io/badge/wofferl-proxmox--backup--arm64-orange.svg)](https://github.com/wofferl/proxmox-backup-arm64)
